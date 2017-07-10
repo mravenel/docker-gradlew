@@ -1,0 +1,12 @@
+image: mravenel/alpine
+
+stages:
+  - mirror
+  
+github-mirror:
+  stage: mirror
+  script:
+  - cd /tmp
+  - git clone --mirror $CI_REPOSITORY_URL
+  - cd docker-gradlew.git
+  - git push --mirror https://$GITHUB_ACCESS_TOKEN@github.com/mravenel/docker-gradlew.git
